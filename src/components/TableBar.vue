@@ -27,6 +27,13 @@ section {
   display: flex;
   gap: 1rem;
   width: 100%;
+  padding: 0 1rem;
   margin: 1rem 0;
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding: 0;
+  }
 }
 </style>
