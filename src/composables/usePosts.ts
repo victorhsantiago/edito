@@ -1,10 +1,10 @@
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { BASE_URL_POSTS } from '@/constants'
-import type { PostsList } from '@/models'
+import type { PostItem, PostsList } from '@/models'
 import { useUsers } from './useUsers'
 
 export function usePosts() {
-  const { getUsers, usersList } = useUsers()
+  const { usersList } = useUsers()
   const postsList = ref<PostsList>()
 
   const postsListWithAuthor = computed(() =>
@@ -21,11 +21,26 @@ export function usePosts() {
     postsList.value = json
   }
 
-  onBeforeMount(async () => await getUsers())
+  async function publishPost(post: {
+    title: string
+    userId: number
+    body: string
+  }): Promise<PostItem> {
+    const response = await fetch(BASE_URL_POSTS, {
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+
+    return await response.json()
+  }
 
   return {
     getPosts,
     postsList,
     postsListWithAuthor,
+    publishPost,
   }
 }

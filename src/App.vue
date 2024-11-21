@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import AppLogo from './assets/AppLogo.vue'
+import { useUsers } from './composables'
+import { onBeforeMount } from 'vue'
+
+const { getUsers } = useUsers()
+
+onBeforeMount(async () => await getUsers())
 </script>
 
 <template>

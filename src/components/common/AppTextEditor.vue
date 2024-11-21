@@ -10,11 +10,12 @@ const quillEditor = useTemplateRef('quill-editor')
 const toolbarOptions = [
   [{ font: [] }],
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  ['bold', 'italic', 'underline'], // toggled buttons
+  ['bold', 'italic', 'underline'],
   [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
-  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-  ['clean'], // remove formatting button
+  [{ indent: '-1' }, { indent: '+1' }],
+  ['clean'],
 ]
+
 const options = {
   modules: {
     toolbar: toolbarOptions,
@@ -26,7 +27,7 @@ const options = {
 onMounted(() => {
   const quill = new Quill(quillEditor.value || 'quill-editor', options)
 
-  quill.on('text-change', () => (model.value = quill.getContents()))
+  quill.on('text-change', () => (model.value = quill.getSemanticHTML()))
 })
 </script>
 

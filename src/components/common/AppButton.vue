@@ -39,6 +39,11 @@ const props = withDefaults(defineProps<Props>(), {
   cursor: pointer;
 }
 
+.app-button:disabled {
+  background-color: var(--color-background-mute);
+  pointer-events: none;
+}
+
 .app-button--primary:hover {
   background-color: var(--tea-green-100);
 }
