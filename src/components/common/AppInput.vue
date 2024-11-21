@@ -1,37 +1,71 @@
 <script setup lang="ts">
-const props = defineProps<{
+import type { InputHTMLAttributes } from 'vue'
+
+type Props = {
+  label?: string
   leftIcon?: string
   rightIcon?: string
   placeholder?: string
-}>()
+  type?: InputHTMLAttributes['type']
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'text',
+})
 
 const model = defineModel()
+
+const inputId = crypto.randomUUID().split('-')[0]
 </script>
 
 <template>
-  <div>
-    <span v-if="leftIcon" class="material-icons-sharp">{{ props.leftIcon }}</span>
-    <input type="text" :placeholder="props.placeholder" v-model="model" />
-    <span v-if="rightIcon" class="material-icons-sharp">{{ props.rightIcon }}</span>
+  <div class="app-input">
+    <label v-if="props.label" :for="inputId" class="app-input__label">{{ props.label }}</label>
+    <div class="app-input__wrapper">
+      <span v-if="leftIcon" class="app-input__icon--left material-icons-sharp" aria-hidden="true">
+        {{ props.leftIcon }}
+      </span>
+      <input
+        class="app-input__field"
+        :type="props.type"
+        :id="inputId"
+        :placeholder="props.placeholder"
+        v-model="model"
+      />
+      <span v-if="rightIcon" class="app-input__icon--right material-icons-sharp" aria-hidden="true">
+        {{ props.rightIcon }}
+      </span>
+    </div>
   </div>
 </template>
 
 <style lang="css" scoped>
-div {
+.app-input {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.app-input__label {
+  font-size: 0.875rem;
+}
+
+.app-input__wrapper {
   display: flex;
   align-items: center;
-  flex: 1;
-  padding: 0 0.5rem;
-  gap: 0.5rem;
   border: 1px solid var(--vt-c-divider-light-2);
 }
 
-span {
+.app-input__icon--left,
+.app-input__icon--right {
   display: flex;
   align-items: center;
+  padding: 0 0.5rem;
+  font-size: 1rem;
 }
 
-input {
+.app-input__field {
   flex: 1;
   border: none;
   outline: none;
@@ -42,16 +76,11 @@ input {
 }
 
 @media (prefers-color-scheme: dark) {
-  div {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    padding: 0 0.5rem;
-    gap: 0.5rem;
+  .app-input__wrapper {
     border: 1px solid var(--vt-c-divider-dark-2);
   }
 
-  input {
+  .app-input__field {
     color: var(--vt-c-text-dark-2);
   }
 }
