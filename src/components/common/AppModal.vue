@@ -6,6 +6,10 @@ const router = useRouter()
 function navigateBack() {
   router.go(-1)
 }
+
+defineExpose({
+  navigateBack,
+})
 </script>
 
 <template>
@@ -55,6 +59,11 @@ header {
 main,
 footer {
   padding: 1rem;
+}
+
+main {
+  max-height: 75vh;
+  overflow: auto;
 }
 
 footer {

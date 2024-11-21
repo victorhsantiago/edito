@@ -43,23 +43,4 @@ onMounted(() => {
   color: var(--vt-c-text-light-1);
   background-color: var(--vt-c-white-soft);
 }
-/*
-.ql-snow .ql-picker {
-  color: var(--vt-c-text-light-1);
-}
-
-@media (prefers-color-scheme: dark) {
-  .ql-toolbar.ql-snow,
-  .ql-container.ql-snow {
-    border-color: var(--vt-c-divider-dark-2);
-  }
-
-  .ql-snow .ql-picker {
-    color: var(--vt-c-text-dark-1);
-  }
-
-  .ql-container.ql-snow {
-    background-color: var(--vt-c-white-soft);
-  }
-} */
 </style>

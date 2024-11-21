@@ -4,10 +4,11 @@ import { useUsers } from '@/composables'
 import type { Delta } from 'quill/core'
 import type { User } from '@/models'
 import AppModal from './common/AppModal.vue'
-import { computed, ref, unref } from 'vue'
+import { computed, ref, unref, useTemplateRef } from 'vue'
 import AppInput from './common/AppInput.vue'
 import AppSelect from './common/AppSelect.vue'
 import AppTextEditor from './common/AppTextEditor.vue'
+import AppButton from './common/AppButton.vue'
 
 const route = useRoute()
 const { usersList } = useUsers()
@@ -15,6 +16,8 @@ const { usersList } = useUsers()
 const title = ref<string>()
 const author = ref<User>()
 const body = ref<Delta>()
+
+const appModal = useTemplateRef('app-modal')
 
 const modalHeader = computed(() => (route.params?.id ? 'Edit post' : 'Create new post'))
 
@@ -27,7 +30,7 @@ const selectOption = computed(() =>
 </script>
 
 <template>
-  <AppModal>
+  <AppModal ref="app-modal">
     <template #header>
       {{ modalHeader }}
     </template>
@@ -37,6 +40,10 @@ const selectOption = computed(() =>
         <AppSelect label="Author" :options="unref(selectOption)!" v-model="author" />
         <AppTextEditor v-model="body" />
       </form>
+    </template>
+    <template #footer>
+      <AppButton variant="secondary" @click="appModal?.navigateBack()"> Close </AppButton>
+      <AppButton type="submit"> Save Changes</AppButton>
     </template>
   </AppModal>
 </template>
