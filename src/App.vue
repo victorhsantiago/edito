@@ -20,7 +20,7 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
-  height: 80px;
+  height: 5rem;
 }
 
 @media (min-width: 1024px) {

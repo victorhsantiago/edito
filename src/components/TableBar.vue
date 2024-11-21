@@ -2,23 +2,31 @@
 import { ref } from 'vue'
 import AppButton from './common/AppButton.vue'
 import AppInput from './common/AppInput.vue'
+import { useRouter } from 'vue-router'
 
 const emit = defineEmits<{
   update: [value: string]
 }>()
 
+const router = useRouter()
+
 const inputValue = ref('')
+
+function createNewPost() {
+  router.push({ name: 'newPost' })
+}
 </script>
 
 <template>
   <section>
     <AppInput
       v-model="inputValue"
+      type="search"
       placeholder="Search for post..."
       left-icon="search"
       @update:model-value="emit('update', $event)"
     />
-    <AppButton type="button" right-icon="edit"> Create new post </AppButton>
+    <AppButton type="button" right-icon="edit" @click="createNewPost"> Create new post </AppButton>
   </section>
 </template>
 

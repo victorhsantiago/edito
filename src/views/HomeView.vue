@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
 import PostTable from '@/components/PostsTable.vue'
 import TableBar from '@/components/TableBar.vue'
 import { usePosts } from '@/composables'
-import { computed, onMounted, ref } from 'vue'
 
 const { getPosts, postsListWithAuthor } = usePosts()
 
@@ -30,6 +30,8 @@ onMounted(async () => {
 
 <template>
   <main>
+    <RouterView />
+
     <TableBar @update="updateSearchQuery" />
     <PostTable :posts-list="filteredPostList" />
   </main>

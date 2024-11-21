@@ -9,16 +9,16 @@ function navigateBack() {
 </script>
 
 <template>
-  <div class="modal-wrapper" @click.stop="navigateBack">
-    <section class="modal-content">
-      <header class="modal-header">
+  <div @click.self="navigateBack">
+    <section>
+      <header>
         <h3><slot name="header" /></h3>
-        <span class="material-icons-sharp close-button" @click.stop="navigateBack">close</span>
+        <span class="material-icons-sharp close-button" @click.self="navigateBack">close</span>
       </header>
-      <main class="modal-main">
+      <main>
         <slot name="main" />
       </main>
-      <footer class="modal-footer">
+      <footer>
         <slot name="footer" />
       </footer>
     </section>
