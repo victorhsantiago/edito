@@ -1,5 +1,8 @@
 <script setup lang="ts" generic="T">
+import { useField } from 'vee-validate'
+
 type Props = {
+  name: string
   label?: string
   leftIcon?: string
   options: {
@@ -12,7 +15,7 @@ type Props = {
 
 const props = defineProps<Props>()
 
-const model = defineModel<T>()
+const { value, errorMessage } = useField(() => props.name)
 
 const selectId = crypto.randomUUID().split('-')[0]
 </script>
@@ -28,7 +31,7 @@ const selectId = crypto.randomUUID().split('-')[0]
         class="app-select__field"
         :id="selectId"
         :placeholder="props.placeholder"
-        v-model="model"
+        v-model="value"
       >
         <option v-for="(option, i) in props.options" :key="i" :value="option.value">
           {{ option.label }}
@@ -44,6 +47,7 @@ const selectId = crypto.randomUUID().split('-')[0]
       <span class="app-select__icon--arrow material-icons-sharp" aria-hidden="true">
         keyboard_arrow_down
       </span>
+      <small v-if="errorMessage" class="app-select__error">{{ errorMessage }}</small>
     </div>
   </div>
 </template>
@@ -53,6 +57,7 @@ const selectId = crypto.randomUUID().split('-')[0]
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
 }
 
 .app-select__label {
@@ -92,6 +97,13 @@ const selectId = crypto.randomUUID().split('-')[0]
   height: 2rem;
 }
 
+.app-select__error {
+  font-size: 0.75rem;
+  color: var(--bole);
+  position: absolute;
+  bottom: -1.1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .app-select__wrapper {
     border: 1px solid var(--vt-c-divider-dark-2);
@@ -99,6 +111,10 @@ const selectId = crypto.randomUUID().split('-')[0]
 
   .app-select__field {
     color: var(--vt-c-text-dark-2);
+  }
+
+  .app-select__error {
+    color: var(--sandy-brown);
   }
 }
 </style>

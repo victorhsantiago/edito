@@ -25,8 +25,8 @@
   --tea-green-80: rgba(201, 228, 202, 0.8);
   --dark-purple: rgba(35, 0, 30, 0.8);
   --wisteria: rgba(203, 156, 242, 0.8);
-  --bole: rgba(119, 74, 54, 0.8);
-  --sandy-brown: rgba(252, 158, 91, 0.8);
+  --bole: rgb(192, 58, 0);
+  --sandy-brown: rgb(252, 158, 91);
 }
 
 /* semantic color variables for this project */

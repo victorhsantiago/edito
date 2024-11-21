@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { useForm } from 'vee-validate'
+import * as yup from 'yup'
 import { usePosts, useUsers } from '@/composables'
-import type { User } from '@/models'
 import AppModal from './common/AppModal.vue'
-import { computed, ref, unref, useTemplateRef } from 'vue'
+import { computed, unref, useTemplateRef } from 'vue'
 import AppInput from './common/AppInput.vue'
 import AppSelect from './common/AppSelect.vue'
 import AppTextEditor from './common/AppTextEditor.vue'
 import AppButton from './common/AppButton.vue'
 
 const route = useRoute()
+const { handleSubmit } = useForm({
+  validationSchema: yup.object({
+    title: yup.string().required(),
+    author: yup.object().required(),
+    body: yup.string().required(),
+  }),
+})
 const { publishPost } = usePosts()
 const { usersList } = useUsers()
 
-const title = ref<string>()
-const author = ref<User>()
-const body = ref<string>()
-
 const appModal = useTemplateRef('app-modal')
-
-const disableSaveButton = computed(
-  () => !Boolean(title.value) || !Boolean(author.value) || !Boolean(body.value?.length),
-)
 
 const modalHeader = computed(() => (route.params?.id ? 'Edit post' : 'Create new post'))
 
@@ -32,13 +32,11 @@ const selectOption = computed(() =>
   })),
 )
 
-async function sendPost() {
-  if (!title.value || !author.value?.id || !body.value) return
-
-  await publishPost({ title: title.value, userId: author.value?.id, body: body.value })
+const sendPost = handleSubmit(async (values) => {
+  await publishPost({ title: values.title, userId: values.author.id, body: values.body })
 
   appModal.value?.navigateBack()
-}
+})
 </script>
 
 <template>
@@ -48,16 +46,14 @@ async function sendPost() {
     </template>
     <template #main>
       <form id="post-form" @submit.prevent="sendPost">
-        <AppInput label="Title" v-model="title" />
-        <AppSelect label="Author" :options="unref(selectOption)!" v-model="author" />
-        <AppTextEditor v-model="body" />
+        <AppInput label="Title" name="title" />
+        <AppSelect label="Author" :options="unref(selectOption)!" name="author" />
+        <AppTextEditor label="Body" name="body" />
       </form>
     </template>
     <template #footer>
       <AppButton variant="secondary" @click="appModal?.navigateBack"> Close </AppButton>
-      <AppButton type="submit" form="post-form" :disabled="disableSaveButton">
-        Save Changes
-      </AppButton>
+      <AppButton type="submit" form="post-form"> Save Changes </AppButton>
     </template>
   </AppModal>
 </template>
@@ -66,6 +62,6 @@ async function sendPost() {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 </style>

@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useField } from 'vee-validate'
 import type { InputHTMLAttributes } from 'vue'
 
 type Props = {
+  name: string
   label?: string
   leftIcon?: string
   rightIcon?: string
@@ -13,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'text',
 })
 
-const model = defineModel()
+const { value, errorMessage } = useField(() => props.name)
 
 const inputId = crypto.randomUUID().split('-')[0]
 </script>
@@ -30,12 +32,13 @@ const inputId = crypto.randomUUID().split('-')[0]
         :type="props.type"
         :id="inputId"
         :placeholder="props.placeholder"
-        v-model="model"
+        v-model="value"
       />
       <span v-if="rightIcon" class="app-input__icon--right material-icons-sharp" aria-hidden="true">
         {{ props.rightIcon }}
       </span>
     </div>
+    <small v-if="errorMessage" class="app-input__error">{{ errorMessage }}</small>
   </div>
 </template>
 
@@ -45,6 +48,7 @@ const inputId = crypto.randomUUID().split('-')[0]
   flex: 1;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
 }
 
 .app-input__label {
@@ -75,6 +79,13 @@ const inputId = crypto.randomUUID().split('-')[0]
   height: 2rem;
 }
 
+.app-input__error {
+  font-size: 0.75rem;
+  color: var(--bole);
+  position: absolute;
+  bottom: -1.1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .app-input__wrapper {
     border: 1px solid var(--vt-c-divider-dark-2);
@@ -82,6 +93,10 @@ const inputId = crypto.randomUUID().split('-')[0]
 
   .app-input__field {
     color: var(--vt-c-text-dark-2);
+  }
+
+  .app-input__error {
+    color: var(--sandy-brown);
   }
 }
 </style>

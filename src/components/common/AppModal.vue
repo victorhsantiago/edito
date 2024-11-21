@@ -56,7 +56,6 @@ header {
   align-items: center;
 }
 
-main,
 footer {
   padding: 1rem;
 }
@@ -64,6 +63,7 @@ footer {
 main {
   max-height: 75vh;
   overflow: auto;
+  padding: 1.5rem 1rem;
 }
 
 footer {

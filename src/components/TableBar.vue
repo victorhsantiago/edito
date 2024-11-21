@@ -21,6 +21,7 @@ function createNewPost() {
   <section>
     <AppInput
       v-model="inputValue"
+      name="search-bar"
       type="search"
       placeholder="Search for post..."
       left-icon="search"
