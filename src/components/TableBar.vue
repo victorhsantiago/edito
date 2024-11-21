@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import AppButton from './AppButton.vue'
-import AppInput from './AppInput.vue'
+import AppButton from './common/AppButton.vue'
+import AppInput from './common/AppInput.vue'
 
 const emit = defineEmits<{
   update: [value: string]
@@ -18,7 +18,7 @@ const inputValue = ref('')
       left-icon="search"
       @update:model-value="emit('update', $event)"
     />
-    <AppButton type="submit" right-icon="edit"> Create new post </AppButton>
+    <AppButton type="button" right-icon="edit"> Create new post </AppButton>
   </section>
 </template>
 
