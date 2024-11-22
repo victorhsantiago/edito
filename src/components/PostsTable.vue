@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import type { PostsWithAuthorList } from '@/models'
+import AppButton from './common/AppButton.vue'
 
 const { postsList } = defineProps<{ postsList?: PostsWithAuthorList }>()
+
+const router = useRouter()
+
+function navigateToEditPost(id: number) {
+  router.push({ name: 'editPost', params: { id } })
+}
 </script>
 
 <template>
@@ -14,6 +22,7 @@ const { postsList } = defineProps<{ postsList?: PostsWithAuthorList }>()
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col">Author</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +31,10 @@ const { postsList } = defineProps<{ postsList?: PostsWithAuthorList }>()
         <td data-cell="title" class="post-title">{{ post.title }}</td>
         <td data-cell="description" class="post-description">{{ post.body }}</td>
         <td data-cell="author">{{ post.author?.name }}</td>
+        <td>
+          <AppButton variant="tertiary" left-icon="edit" @click="navigateToEditPost(post.id)" />
+          <AppButton variant="tertiary" left-icon="delete" />
+        </td>
       </tr>
     </tbody>
   </table>
@@ -42,6 +55,7 @@ td {
   overflow: hidden;
   text-wrap: nowrap;
   transition: 0.2s;
+  text-align: left;
 }
 
 tr {
@@ -86,9 +100,9 @@ tbody tr:nth-child(even) {
     display: grid;
     grid-template-columns: min-content auto;
     grid-template-areas:
-      'checkbox title'
-      'checkbox description'
-      'checkbox author';
+      'checkbox title actions'
+      'checkbox description actions'
+      'checkbox author actions';
     height: auto;
   }
 
@@ -109,14 +123,21 @@ tbody tr:nth-child(even) {
     grid-area: author;
   }
 
+  td:nth-of-type(5) {
+    grid-area: actions;
+    display: grid;
+    place-items: center;
+  }
+
   td::before {
     content: attr(data-cell) ': ';
     font-weight: 600;
     text-transform: capitalize;
   }
 
-  td:nth-of-type(1)::before {
-    content: '';
+  td:nth-of-type(1)::before,
+  td:nth-of-type(5)::before {
+    content: unset;
   }
 
   .post-title,

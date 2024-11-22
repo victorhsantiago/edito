@@ -14,8 +14,9 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
 })
+const model = defineModel<string>()
 
-const { value, errorMessage } = useField(() => props.name)
+const { errorMessage } = useField(() => props.name, {}, { syncVModel: model.value })
 
 const inputId = crypto.randomUUID().split('-')[0]
 </script>
@@ -23,21 +24,25 @@ const inputId = crypto.randomUUID().split('-')[0]
 <template>
   <div class="app-input">
     <label v-if="props.label" :for="inputId" class="app-input__label">{{ props.label }}</label>
+
     <div class="app-input__wrapper">
       <span v-if="leftIcon" class="app-input__icon--left material-icons-sharp" aria-hidden="true">
         {{ props.leftIcon }}
       </span>
+
       <input
         class="app-input__field"
         :type="props.type"
         :id="inputId"
         :placeholder="props.placeholder"
-        v-model="value"
+        v-model="model"
       />
+
       <span v-if="rightIcon" class="app-input__icon--right material-icons-sharp" aria-hidden="true">
         {{ props.rightIcon }}
       </span>
     </div>
+
     <small v-if="errorMessage" class="app-input__error">{{ errorMessage }}</small>
   </div>
 </template>

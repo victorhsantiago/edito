@@ -5,8 +5,9 @@ import { useField } from 'vee-validate'
 import 'quill/dist/quill.snow.css'
 
 const props = defineProps<{ name: string; label: string }>()
+const model = defineModel<string>()
 
-const { value, errorMessage } = useField(() => props.name)
+const { errorMessage } = useField(() => props.name, {}, { syncVModel: model.value })
 const quillEditor = useTemplateRef('quill-editor')
 
 const toolbarOptions = [
@@ -29,7 +30,9 @@ const options = {
 onMounted(() => {
   const quill = new Quill(quillEditor.value || 'quill-editor', options)
 
-  quill.on('text-change', () => (value.value = quill.getSemanticHTML()))
+  quill.on('text-change', () => (model.value = quill.getSemanticHTML()))
+
+  if (model.value) quill.insertText(0, model.value)
 })
 </script>
 

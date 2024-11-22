@@ -6,6 +6,7 @@ import { useUsers } from './useUsers'
 export function usePosts() {
   const { usersList } = useUsers()
   const postsList = ref<PostsList>()
+  const post = ref<PostItem>()
 
   const postsListWithAuthor = computed(() =>
     postsList.value?.map((post) => ({
@@ -16,9 +17,14 @@ export function usePosts() {
 
   async function getPosts(): Promise<void> {
     const response = await fetch(BASE_URL_POSTS)
-    const json = await response.json()
 
-    postsList.value = json
+    postsList.value = await response.json()
+  }
+
+  async function getSinglePost(id: number) {
+    const response = await fetch(`${BASE_URL_POSTS}/${id}`)
+
+    post.value = await response.json()
   }
 
   async function publishPost(post: {
@@ -39,6 +45,8 @@ export function usePosts() {
 
   return {
     getPosts,
+    getSinglePost,
+    post,
     postsList,
     postsListWithAuthor,
     publishPost,

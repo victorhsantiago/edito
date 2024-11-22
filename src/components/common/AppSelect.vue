@@ -14,8 +14,9 @@ type Props = {
 }
 
 const props = defineProps<Props>()
+const model = defineModel<string>()
 
-const { value, errorMessage } = useField(() => props.name)
+const { errorMessage } = useField(() => props.name, {}, { syncVModel: model.value })
 
 const selectId = crypto.randomUUID().split('-')[0]
 </script>
@@ -27,16 +28,18 @@ const selectId = crypto.randomUUID().split('-')[0]
       <span v-if="leftIcon" class="app-select__icon--left material-icons-sharp" aria-hidden="true">
         {{ props.leftIcon }}
       </span>
+
       <select
         class="app-select__field"
         :id="selectId"
         :placeholder="props.placeholder"
-        v-model="value"
+        v-model="model"
       >
         <option v-for="(option, i) in props.options" :key="i" :value="option.value">
           {{ option.label }}
         </option>
       </select>
+
       <span
         v-if="rightIcon"
         class="app-select__icon--right material-icons-sharp"
@@ -44,9 +47,11 @@ const selectId = crypto.randomUUID().split('-')[0]
       >
         {{ props.rightIcon }}
       </span>
+
       <span class="app-select__icon--arrow material-icons-sharp" aria-hidden="true">
         keyboard_arrow_down
       </span>
+
       <small v-if="errorMessage" class="app-select__error">{{ errorMessage }}</small>
     </div>
   </div>

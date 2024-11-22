@@ -27,7 +27,7 @@ function createNewPost() {
       left-icon="search"
       @update:model-value="emit('update', $event)"
     />
-    <AppButton type="button" right-icon="edit" @click="createNewPost"> Create new post </AppButton>
+    <AppButton type="button" right-icon="add" @click="createNewPost"> Create new post </AppButton>
   </section>
 </template>
 

@@ -5,7 +5,7 @@ type Props = {
   leftIcon?: string
   rightIcon?: string
   type?: ButtonHTMLAttributes['type']
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'tertiary'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -62,13 +62,23 @@ const props = withDefaults(defineProps<Props>(), {
   border: 1px solid var(--color-border-hover);
 }
 
+.app-button--tertiary {
+  background-color: transparent;
+}
+
+.app-button--tertiary:hover {
+  background-color: var(--color-background-soft);
+  border: 1px solid var(--color-border-hover);
+}
+
 .app-button__icon {
   font-size: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
-  .app-button--secondary {
-    color: var(--color-tex);
+  .app-button--secondary,
+  .app-button--tertiary {
+    color: var(--color-text);
   }
 }
 </style>
