@@ -86,6 +86,10 @@ const selectId = crypto.randomUUID().split('-')[0]
   transition: transform 0.2s;
 }
 
+.app-select__wrapper:has(.app-select__field:focus) {
+  box-shadow: var(--focus-shadow);
+}
+
 .app-select__field:focus-within ~ .app-select__icon--arrow {
   transform: rotate(-180deg);
 }
