@@ -13,8 +13,8 @@ function closeDialog() {
 </script>
 
 <template>
-  <dialog ref="app-dialog">
-    <div class="wrapper">
+  <dialog ref="app-dialog" role="dialog" aria-modal="true" class="app-dialog">
+    <div class="app-dialog__wrapper">
       <header>
         <slot name="header" />
       </header>
@@ -31,7 +31,7 @@ function closeDialog() {
 </template>
 
 <style lang="css" scoped>
-dialog {
+.app-dialog {
   border: 0;
   background-color: var(--color-background-soft);
   color: var(--color-text);
@@ -40,10 +40,10 @@ dialog {
   top: 50%;
 }
 
-.wrapper {
+.app-dialog__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-md);
   min-width: 300px;
   max-width: 400px;
 }

@@ -52,7 +52,7 @@ const inputId = crypto.randomUUID().split('-')[0]
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   position: relative;
 }
 
@@ -61,7 +61,7 @@ const inputId = crypto.randomUUID().split('-')[0]
 }
 
 .app-input__label {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
 }
 
 .app-input__wrapper {
@@ -74,8 +74,8 @@ const inputId = crypto.randomUUID().split('-')[0]
 .app-input__icon--right {
   display: flex;
   align-items: center;
-  padding: 0 0.5rem;
-  font-size: 1rem;
+  padding: 0 var(--space-xs);
+  font-size: var(--font-size-md);
 }
 
 .app-input__field {
@@ -83,13 +83,13 @@ const inputId = crypto.randomUUID().split('-')[0]
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   color: var(--vt-c-text-light-2);
   height: 2rem;
 }
 
 .app-input__error {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   color: var(--bole);
   position: absolute;
   bottom: -1.1rem;

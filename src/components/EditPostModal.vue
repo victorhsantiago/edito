@@ -91,6 +91,6 @@ onBeforeMount(async () => {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-lg);
 }
 </style>

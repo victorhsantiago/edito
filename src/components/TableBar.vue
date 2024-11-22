@@ -18,21 +18,22 @@ function createNewPost() {
 </script>
 
 <template>
-  <section>
+  <section class="search-bar">
     <AppInput
       v-model="inputValue"
       name="search-bar"
       type="search"
       placeholder="Search for post..."
       left-icon="search"
-      @update:model-value="emit('update', $event)"
+      aria-label="Search for posts"
+      @update:model-value="(value) => emit('update', value)"
     />
-    <AppButton type="button" right-icon="add" @click="createNewPost"> Create new post </AppButton>
+    <AppButton type="button" right-icon="add" @click="createNewPost">Create new post</AppButton>
   </section>
 </template>
 
 <style lang="css" scoped>
-section {
+.search-bar {
   display: flex;
   gap: 1rem;
   width: 100%;
@@ -41,7 +42,7 @@ section {
 }
 
 @media (min-width: 1024px) {
-  section {
+  .search-bar {
     padding: 0;
   }
 }

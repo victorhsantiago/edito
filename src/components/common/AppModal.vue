@@ -50,7 +50,7 @@ section {
 }
 
 header {
-  padding: 1rem;
+  padding: var(--space-md);
   border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
@@ -58,18 +58,18 @@ header {
 }
 
 footer {
-  padding: 1rem;
+  padding: var(--space-md);
 }
 
 main {
   max-height: 75vh;
   overflow: auto;
-  padding: 1.5rem 1rem;
+  padding: var(--space-lg) var(--space-md);
 }
 
 footer {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   justify-content: end;
   border-top: 1px solid var(--color-border);
 }
@@ -79,9 +79,9 @@ footer {
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   font-weight: 500;
-  margin-bottom: 0.4rem;
+  margin-bottom: var(--space-xs);
   color: var(--color-heading);
 }
 </style>

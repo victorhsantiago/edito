@@ -50,16 +50,16 @@ onMounted(() => {
 .text-editor__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   position: relative;
 }
 
 .text-editor__label {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
 }
 
 .text-editor__error {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   color: var(--bole);
   position: absolute;
   bottom: -1.1rem;

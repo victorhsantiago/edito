@@ -18,14 +18,14 @@ onBeforeMount(async () => await getUsers())
 
 <style scoped>
 header {
-  line-height: 1.5;
+  line-height: var(-line-height-md);
   max-width: 1024px;
   margin: 0 auto;
 }
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 auto var(--space-xl);
   height: 5rem;
 }
 
@@ -37,7 +37,7 @@ header {
   }
 
   .logo {
-    margin: 2rem 0;
+    margin: var(--space-xl) 0;
   }
 }
 </style>

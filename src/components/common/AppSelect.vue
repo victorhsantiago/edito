@@ -61,12 +61,12 @@ const selectId = crypto.randomUUID().split('-')[0]
 .app-select {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   position: relative;
 }
 
 .app-select__label {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
 }
 
 .app-select__wrapper {
@@ -81,8 +81,8 @@ const selectId = crypto.randomUUID().split('-')[0]
 .app-select__icon--arrow {
   display: flex;
   align-items: center;
-  padding: 0 0.5rem;
-  font-size: 1rem;
+  padding: 0 var(--space-xs);
+  font-size: var(--font-size-md);
   transition: transform 0.2s;
 }
 
@@ -97,13 +97,13 @@ const selectId = crypto.randomUUID().split('-')[0]
   border: none;
   outline: none;
   background-color: var(--color-background-soft);
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   color: var(--vt-c-text-light-2);
   height: 2rem;
 }
 
 .app-select__error {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   color: var(--bole);
   position: absolute;
   bottom: -1.1rem;

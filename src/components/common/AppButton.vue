@@ -30,10 +30,10 @@ const props = withDefaults(defineProps<Props>(), {
 .app-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   border: none;
   outline: none;
-  padding: 0 0.5rem;
+  padding: 0 var(--space-xs);
   height: 2rem;
   transition: 0.2s;
   cursor: pointer;
@@ -76,7 +76,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .app-button__icon {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 @media (prefers-color-scheme: dark) {

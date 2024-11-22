@@ -14,18 +14,26 @@ const { deletePost } = usePosts()
 <template>
   <AppDialog>
     <template #header>
-      <h4>Delete Post</h4>
+      <h4 class="delete-dialog__title">Delete Post</h4>
     </template>
     <template #main>
-      <p>
+      <p class="delete-dialog__message">
         Are you sure you want to delete "<em>{{ post.title }}</em
-        >"? This action is irreversibel.
+        >"? This action is irreversible.
       </p>
     </template>
     <template #footer="{ closeDialog }">
-      <div>
-        <AppButton autofocus variant="secondary" @click="() => closeDialog()"> No </AppButton>
+      <div class="delete-dialog__actions">
         <AppButton
+          autofocus
+          variant="secondary"
+          aria-label="Cancel deletion"
+          @click="() => closeDialog()"
+        >
+          No
+        </AppButton>
+        <AppButton
+          aria-label="Confirm deletion"
           @click="
             () => {
               deletePost(post.id)
@@ -38,23 +46,28 @@ const { deletePost } = usePosts()
       </div>
     </template>
     <template v-slot="{ openDialog }">
-      <AppButton variant="tertiary" left-icon="delete" @click="() => openDialog()" />
+      <AppButton
+        variant="tertiary"
+        left-icon="delete"
+        aria-label="Open delete confirmation dialog"
+        @click="() => openDialog()"
+      />
     </template>
   </AppDialog>
 </template>
 
 <style lang="css" scoped>
-h4 {
-  font-size: 1.2rem;
+.delete-dialog__title {
+  font-size: var(--font-size-xl);
 }
 
-p {
+.delete-dialog__message {
   white-space: wrap;
 }
 
-div {
+.delete-dialog__actions {
   display: flex;
-  gap: 1rem;
-  justify-content: end;
+  gap: var(--space-md);
+  justify-content: flex-end;
 }
 </style>
