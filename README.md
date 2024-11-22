@@ -2,18 +2,6 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
 ## Project Setup
 
 ```sh
@@ -32,14 +20,21 @@ npm run dev
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Run Tests with [Playwright](https://playwright.dev/)
 
 ```sh
-npm run test:unit
+npm run test
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Improvements
 
-```sh
-npm run lint
-```
+- Batch actions, to allow users to remove several posts at once
+- Add pagination on posts table
+- Add select all functionality to the table
+- Improve accessability allowing users to tab out of the editting box, or submit post by pressing `ctrl + Enter` while in it
+- Add dark and light themes toggle
+- Add better user experience when app is waiting for a network request, like a loading icon and/or skeletons
+
+## Note(s)
+
+This was my first time writing E2E tests, I thought it was super cool because, theoretically, you don't have to worry about mocking network requests because the test tool actually makes them, and is able to test the result as if the application was really being used. Having said that, my test coverage might not be as thorough as it could be.
