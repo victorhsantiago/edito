@@ -69,14 +69,8 @@ onBeforeMount(async () => {
     </template>
     <template #main>
       <form id="post-form" @submit.prevent="sendPost">
-        <AppInput v-model="title" label="Title" name="title" />
-        <AppSelect
-          v-model="userId"
-          label="Author"
-          autofocus
-          :options="unref(selectOption)!"
-          name="author"
-        />
+        <AppInput v-model="title" label="Title" name="title" autofocus />
+        <AppSelect v-model="userId" label="Author" :options="unref(selectOption)!" name="author" />
         <AppTextEditor v-if="!loadingPost" v-model="body" label="Body" name="body" />
       </form>
     </template>

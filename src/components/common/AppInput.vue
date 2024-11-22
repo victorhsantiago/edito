@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { onMounted, useTemplateRef, type InputHTMLAttributes } from 'vue'
 import { useField } from 'vee-validate'
-import type { InputHTMLAttributes } from 'vue'
 
 type Props = {
+  autofocus?: boolean
   name: string
   label?: string
   leftIcon?: string
@@ -16,9 +17,15 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const model = defineModel<string>()
 
+const inputRef = useTemplateRef('input-ref')
+
 const { errorMessage } = useField(() => props.name, {}, { syncVModel: model.value })
 
 const inputId = crypto.randomUUID().split('-')[0]
+
+onMounted(() => {
+  if (props.autofocus) inputRef.value?.focus()
+})
 </script>
 
 <template>
@@ -32,6 +39,7 @@ const inputId = crypto.randomUUID().split('-')[0]
 
       <input
         class="app-input__field"
+        ref="input-ref"
         :type="props.type"
         :id="inputId"
         :placeholder="props.placeholder"
