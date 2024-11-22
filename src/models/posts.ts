@@ -13,3 +13,9 @@ export interface PostItem {
 export interface PostItemWithAuthor extends PostItem {
   author?: User
 }
+
+export interface PostInput {
+  title: string
+  userId: number
+  body: string
+}
