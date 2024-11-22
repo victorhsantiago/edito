@@ -15,6 +15,12 @@ export function usePosts() {
     })),
   )
 
+  async function deletePost(id: number) {
+    await fetch(`${BASE_URL_POSTS}/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
   async function getPosts(): Promise<void> {
     const response = await fetch(BASE_URL_POSTS)
 
@@ -44,6 +50,7 @@ export function usePosts() {
   }
 
   return {
+    deletePost,
     getPosts,
     getSinglePost,
     post,

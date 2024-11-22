@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import type { PostsWithAuthorList } from '@/models'
 import AppButton from './common/AppButton.vue'
+import DeletePostDialog from './DeletePostDialog.vue'
 
 const { postsList } = defineProps<{ postsList?: PostsWithAuthorList }>()
 
@@ -33,7 +34,7 @@ function navigateToEditPost(id: number) {
         <td data-cell="author">{{ post.author?.name }}</td>
         <td>
           <AppButton variant="tertiary" left-icon="edit" @click="navigateToEditPost(post.id)" />
-          <AppButton variant="tertiary" left-icon="delete" />
+          <DeletePostDialog :post="post" />
         </td>
       </tr>
     </tbody>

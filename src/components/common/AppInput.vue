@@ -56,6 +56,10 @@ const inputId = crypto.randomUUID().split('-')[0]
   position: relative;
 }
 
+.app-input__wrapper:has(.app-input__field:focus) {
+  box-shadow: var(--focus-shadow);
+}
+
 .app-input__label {
   font-size: 0.875rem;
 }

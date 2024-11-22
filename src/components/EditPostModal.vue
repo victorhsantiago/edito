@@ -55,7 +55,7 @@ onBeforeMount(async () => {
   setValues({
     title: post.value?.title,
     body: post.value?.body,
-    userId: post.value?.userId,
+    author: post.value?.userId,
   })
 
   loadingPost.value = false
@@ -70,7 +70,13 @@ onBeforeMount(async () => {
     <template #main>
       <form id="post-form" @submit.prevent="sendPost">
         <AppInput v-model="title" label="Title" name="title" />
-        <AppSelect v-model="userId" label="Author" :options="unref(selectOption)!" name="author" />
+        <AppSelect
+          v-model="userId"
+          label="Author"
+          autofocus
+          :options="unref(selectOption)!"
+          name="author"
+        />
         <AppTextEditor v-if="!loadingPost" v-model="body" label="Body" name="body" />
       </form>
     </template>

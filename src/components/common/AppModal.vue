@@ -40,7 +40,8 @@ div {
   right: 0;
   bottom: 0;
   z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--backdrop-color);
+  backdrop-filter: blur(4px) grayscale(100%);
 }
 
 section {

@@ -44,6 +44,10 @@ const props = withDefaults(defineProps<Props>(), {
   pointer-events: none;
 }
 
+.app-button:focus {
+  box-shadow: var(--focus-shadow);
+}
+
 .app-button--primary:hover {
   background-color: var(--tea-green-100);
 }
