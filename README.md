@@ -45,4 +45,4 @@ I used [VeeValidate](https://vee-validate.logaretm.com/v4/) to handle form valid
 
 This was my first time writing E2E tests, I thought it was super cool because, theoretically, you don't have to worry about mocking network requests because the test tool actually makes them, and is able to test the result as if the application was really being used. Having said that, my test coverage might not be as thorough as it could be.
 
-I chosed [Playwright](https://playwright.dev/) for E2E test, I didn't give it much thought as I'm not that experienced in writing E2E, but it has the most stars on Github 😆
+I choosed [Playwright](https://playwright.dev/) for E2E test, I didn't give it much thought as I'm not that experienced in writing E2E, but it has the most stars on Github 😆
