@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('Navigate to home and filter Posts Table', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/')
+  await page.goto('http://localhost:5173/')
   await page.getByPlaceholder('Search for post...').click()
   await page.getByPlaceholder('Search for post...').fill('sunt aut')
 

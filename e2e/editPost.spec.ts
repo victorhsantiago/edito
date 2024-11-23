@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Edit post modal', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://127.0.0.1:5173/')
+    await page.goto('http://localhost:5173/')
   })
 
   test('Successfylly edit a post', async ({ page }) => {
@@ -24,7 +24,6 @@ test.describe('Edit post modal', () => {
   })
 
   test('Validate inputs', async ({ page }) => {
-    await page.goto('http://127.0.0.1:5173/')
     await page
       .getByRole('row', { name: 'Select post et ea vero quia' })
       .getByRole('button')
