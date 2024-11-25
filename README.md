@@ -54,3 +54,4 @@ I choosed [Playwright](https://playwright.dev/) for E2E test, I didn't give it m
 - Improve accessability allowing users to tab out of the editting box, or submit posts by pressing `ctrl + Enter` while in it
 - Add dark and light themes toggle
 - Add better user experience when app is waiting for a network request, like a loading icon and/or skeletons
+- Add notifications
