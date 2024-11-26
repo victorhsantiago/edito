@@ -13,16 +13,22 @@ defineExpose({
 </script>
 
 <template>
-  <div @click.self="navigateBack">
-    <section>
-      <header>
-        <h3><slot name="header" /></h3>
-        <span class="material-icons-sharp close-button" @click.self="navigateBack">close</span>
+  <div class="app-modal" role="dialog" @click.self="navigateBack">
+    <section class="app-modal__content">
+      <header class="app-modal__header">
+        <h3 id="modal-title"><slot name="header" /></h3>
+        <span
+          class="material-icons-sharp app-modal__close-button"
+          @click.self="navigateBack"
+          aria-label="Close dialog"
+        >
+          close
+        </span>
       </header>
-      <main>
+      <main class="app-modal__main">
         <slot name="main" />
       </main>
-      <footer>
+      <footer class="app-modal__footer">
         <slot name="footer" />
       </footer>
     </section>
@@ -30,7 +36,7 @@ defineExpose({
 </template>
 
 <style lang="css" scoped>
-div {
+.app-modal {
   position: fixed;
   display: flex;
   align-items: center;
@@ -44,12 +50,12 @@ div {
   backdrop-filter: blur(4px) grayscale(100%);
 }
 
-section {
+.app-modal__content {
   flex-basis: 900px;
   background-color: var(--color-background-soft);
 }
 
-header {
+.app-modal__header {
   padding: var(--space-md);
   border-bottom: 1px solid var(--color-border);
   display: flex;
@@ -57,24 +63,21 @@ header {
   align-items: center;
 }
 
-footer {
-  padding: var(--space-md);
-}
-
-main {
+.app-modal__main {
   max-height: 75vh;
   overflow: auto;
   padding: var(--space-lg) var(--space-md);
 }
 
-footer {
+.app-modal__footer {
   display: flex;
   gap: var(--space-md);
-  justify-content: end;
+  justify-content: flex-end;
+  padding: var(--space-md);
   border-top: 1px solid var(--color-border);
 }
 
-.close-button {
+.app-modal__close-button {
   cursor: pointer;
 }
 
