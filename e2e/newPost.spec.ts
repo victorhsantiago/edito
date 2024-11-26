@@ -17,7 +17,7 @@ test.describe('Create new post modal', () => {
   test('Publish a new post', async ({ page }) => {
     await page.getByRole('button', { name: 'Create new post add' }).click()
 
-    await expect(page.getByText('Create new postclose')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Create new post' })).toBeVisible()
 
     await page.getByLabel('Title').fill('New title')
     await page.getByLabel('Author').selectOption('4')
@@ -25,6 +25,6 @@ test.describe('Create new post modal', () => {
     await page.locator('#quill-editor div').first().fill('A new story is about to begin')
     await page.getByRole('button', { name: 'Save Changes' }).click()
 
-    await expect(page.getByText('Create new postclose')).not.toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Create new post' })).not.toBeVisible()
   })
 })
